@@ -4,22 +4,40 @@
  *
  * @format
  * @flow
-●●●●●●残タスク●●●●●●●
-・画面下のスクロールバーをアイコンに変更する。
-→Propsの設定をしっかりと行ったあとでないと出いないと思われる。
-
-●●●●●●●●●●●●●●●●●●●●
  */
 
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, ScrollView } from "react-native";
 import ScrollableTabView from "react-native-scrollable-tab-view";
-import ToDoList from "./components/ToDoList";
+import firebase from "firebase";
+
+import MyPageContainer from "./container/MyPageContainer";
 import WriteDialyContainer from "./container/WriteDialyContainer";
-import Icon, { camera } from "react-native-vector-icons/FontAwesome";
+import LoginContainer from "./container/LoginContainer";
 
 type Props = {};
 export default class App extends Component<Props> {
+  state = { loggedIn: null };
+
+  componentWillMount() {
+    firebase.initializeApp({
+      apiKey: "AIzaSyCmToYfaWw6Ogo31AbbyPilpD3kvHAbeoU",
+      authDomain: "letslogin-8fec8.firebaseapp.com",
+      databaseURL: "https://letslogin-8fec8.firebaseio.com",
+      projectId: "letslogin-8fec8",
+      storageBucket: "letslogin-8fec8.appspot.com",
+      messagingSenderId: "303149806946"
+    });
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ loggedIn: true });
+      } else {
+        this.setState({ loggedIn: false });
+      }
+    });
+  }
+
   render() {
     return (
       <ScrollableTabView
@@ -28,10 +46,13 @@ export default class App extends Component<Props> {
         tabBarBackgroundColor="pink"
         tabBarActiveTextColor="red"
       >
-        <WriteDialyContainer tabLabel="テスト" />
-        <ToDoList tabLabel="aaa" style={styles.container} />
-        <Text tabLabel="Tab #2">favorite</Text>
-        <Text tabLabel="Tab #3" />
+        <WriteDialyContainer tabLabel="カレンダー" />
+        <MyPageContainer tabLabel="マイページ" />
+        <Text tabLabel="ショップ">favorite</Text>
+        <Text tabLabel="設定" />
+        {/*<LoginContainer
+          tabLabel={this.state.loggedIn ? "ログアウト" : "ログイン"}
+        />*/}
       </ScrollableTabView>
     );
   }

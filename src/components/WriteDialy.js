@@ -2,11 +2,7 @@
  * 顧客情報新規追加用部分のコンポーネント
  */
 import React, { Component } from "react";
-
-import Icon, { camera } from "react-native-vector-icons/FontAwesome";
-//connectのインポート宣言を行う
-// → connectを用いてstoreをpropで読めるようにする
-//import { connect } from "react-redux";
+import { Calendar, CalendarList, Agenda } from "react-native-calendars";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 //コンポーネントの内容を定義する ※ ClassComponent
 export default class WriteDialy extends Component {
@@ -17,8 +13,8 @@ export default class WriteDialy extends Component {
   render() {
     return (
       <View>
-        <Text>ssssss</Text>
-        <Icon name="camera" />
+        <Calendar monthFormat={"yyyy年 MM月 dd日"} />
+        <Text>ここに日記を書いていくよ</Text>
       </View>
     );
   }
