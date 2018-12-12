@@ -6,11 +6,9 @@ import { createStore } from "redux";
 import reducers from "./redux";
 import Router from "./router";
 
-type Props = {};
-
 export default class App extends Component<Props> {
   render() {
-    const store = createStore(reducers, {});
+    const store = createStore(reducers);
     return (
       <Provider store={store}>
         <Router />

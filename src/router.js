@@ -12,6 +12,7 @@ import ScrollableTabView from "react-native-scrollable-tab-view";
 import firebase from "firebase";
 
 import MyPageContainer from "./container/MyPageContainer";
+import ShopContainer from "./container/ShopContainer";
 import WriteDialyContainer from "./container/WriteDialyContainer";
 import LoginContainer from "./container/LoginContainer";
 
@@ -48,9 +49,9 @@ export default class App extends Component<Props> {
       >
         <WriteDialyContainer tabLabel="カレンダー" />
         <MyPageContainer tabLabel="マイページ" />
-        <Text tabLabel="ショップ">favorite</Text>
-        <Text tabLabel="設定" />
-        {/*<LoginContainer
+        {/* <ShopContainer tabLabel="ショップ" /> */}
+        {/* <Text tabLabel="設定" /> */}
+        {/* <LoginContainer
           tabLabel={this.state.loggedIn ? "ログアウト" : "ログイン"}
         />*/}
       </ScrollableTabView>
