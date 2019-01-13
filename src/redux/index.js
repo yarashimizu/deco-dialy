@@ -4,5 +4,5 @@ import { combineReducers } from "redux";
 import WriteDailyReducer from "./WriteDialy";
 
 export default combineReducers({
-  WriteDaily: WriteDailyReducer
+  writeDaily: WriteDailyReducer
 });

@@ -2,16 +2,19 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, ScrollView } from "react-native";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./configureStore";
 
 import reducers from "./redux";
 import Router from "./router";
 
 export default class App extends Component<Props> {
   render() {
-    const store = createStore(reducers);
     return (
       <Provider store={store}>
-        <Router />
+        <PersistGate loading={null} persistor={persistor}>
+          <Router />
+        </PersistGate>
       </Provider>
     );
   }
